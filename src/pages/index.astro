@@ -16,6 +16,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <a href="mailto:salman01sp@gmail.com">Email</a>
     </p>
   </section>
+
+  <section class="section about">
+    <h2>About Salman</h2>
+    <p>
+      I write software for a living, and spend most of my time outside work
+      reading, tinkering with small projects, and thinking about how to build
+      things that last. This site is a place to keep notes on both.
+    </p>
+
+    <h3>Personal</h3>
+    <p>
+      Outside of work I read widely &mdash; mostly nonfiction, systems
+      thinking, and the occasional novel. I like slow mornings, long walks,
+      and conversations that wander. I'm generally more interested in asking
+      good questions than having quick answers.
+    </p>
+  </section>
 </BaseLayout>
 
 <style>
@@ -26,7 +43,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .kicker {
     margin: 0 0 0.5rem;
-    color: var(--accent-2);
+    color: var(--muted);
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -52,5 +69,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .dot {
     color: var(--border);
     margin: 0 0.35rem;
+  }
+
+  .about h2 {
+    font-size: 1.65rem;
+    font-style: italic;
+    margin: 0 0 1rem;
+  }
+
+  .about h3 {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin: 2rem 0 0.75rem;
+  }
+
+  .about p {
+    color: var(--muted);
+    max-width: 34rem;
   }
 </style>

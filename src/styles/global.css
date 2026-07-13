@@ -4,8 +4,6 @@
   --fg: #241f1a;
   --muted: #7a7167;
   --border: #e6dcca;
-  --accent: #c1502e;
-  --accent-2: #4b6a5a;
   --code-bg: #f1e9da;
   --max-width: 42rem;
   --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
@@ -19,8 +17,6 @@
     --fg: #ede6da;
     --muted: #a89c8c;
     --border: #382f27;
-    --accent: #e08a5f;
-    --accent-2: #8fb5a1;
     --code-bg: #241f1a;
   }
 }
@@ -31,8 +27,6 @@
   --fg: #241f1a;
   --muted: #7a7167;
   --border: #e6dcca;
-  --accent: #c1502e;
-  --accent-2: #4b6a5a;
   --code-bg: #f1e9da;
 }
 
@@ -42,8 +36,6 @@
   --fg: #ede6da;
   --muted: #a89c8c;
   --border: #382f27;
-  --accent: #e08a5f;
-  --accent-2: #8fb5a1;
   --code-bg: #241f1a;
 }
 
@@ -83,12 +75,15 @@ img {
 }
 
 a {
-  color: var(--accent);
-  text-decoration: none;
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--muted);
+  text-underline-offset: 3px;
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration-color: var(--fg);
 }
 
 h1,
@@ -156,12 +151,14 @@ hr {
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+  text-decoration: none;
 }
 
 .nav-pill:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  text-decoration: none;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--muted);
+  text-underline-offset: 4px;
 }
 
 /* Footer */
@@ -263,7 +260,7 @@ hr {
 }
 
 .settings-toggle:hover {
-  border-color: var(--accent);
+  border-color: var(--fg);
 }
 
 .settings-toggle svg {
@@ -310,8 +307,11 @@ hr {
 }
 
 .settings-menu button[aria-pressed='true'] {
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--fg);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
 }
 
 .settings-menu button svg {

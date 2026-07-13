@@ -1,16 +1,32 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import BaseLayout from './BaseLayout.astro';
+interface NextEntry {
+  href: string;
+  title: string;
+}
 
 interface Props {
   title: string;
   description: string;
   date: Date;
   updated?: Date;
-  nextPost?: CollectionEntry<'blog'> | null;
+  next?: NextEntry | null;
+  nextLabel?: string;
+  backHref?: string;
+  backLabel?: string;
 }
 
-const { title, description, date, updated, nextPost } = Astro.props;
+import BaseLayout from './BaseLayout.astro';
+
+const {
+  title,
+  description,
+  date,
+  updated,
+  next,
+  nextLabel = 'Next post',
+  backHref = '/blog',
+  backLabel = '← Back to all posts',
+} = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
@@ -37,14 +53,14 @@ const { title, description, date, updated, nextPost } = Astro.props;
 
     <footer class="post-footer">
       {
-        nextPost && (
-          <a href={`/blog/${nextPost.id}/`} class="next-post">
-            <span class="next-label">Next post</span>
-            <span class="next-title">{nextPost.data.title} &rarr;</span>
+        next && (
+          <a href={next.href} class="next-post">
+            <span class="next-label">{nextLabel}</span>
+            <span class="next-title">{next.title} &rarr;</span>
           </a>
         )
       }
-      <p class="back"><a href="/blog">&larr; Back to all posts</a></p>
+      <p class="back"><a href={backHref}>{backLabel}</a></p>
     </footer>
   </article>
 </BaseLayout>
@@ -66,15 +82,14 @@ const { title, description, date, updated, nextPost } = Astro.props;
   .post-header h1 {
     font-size: clamp(2rem, 6vw, 2.75rem);
     font-style: italic;
-    margin: 0.75rem 0 1.5rem;
+    margin: 0.75rem 0 0.5rem;
   }
 
   .rule {
     display: block;
     width: 3rem;
-    height: 3px;
-    background: var(--accent);
-    border-radius: 2px;
+    height: 2px;
+    background: var(--fg);
   }
 
   .post-footer {
@@ -92,12 +107,12 @@ const { title, description, date, updated, nextPost } = Astro.props;
 
   .next-post:hover {
     text-decoration: none;
-    border-color: var(--accent);
+    border-color: var(--fg);
   }
 
   .next-label {
     display: block;
-    color: var(--accent-2);
+    color: var(--muted);
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -157,13 +172,8 @@ const { title, description, date, updated, nextPost } = Astro.props;
     color: var(--fg);
   }
 
-  .prose a {
-    text-decoration: underline;
-    text-decoration-color: var(--border);
-    text-underline-offset: 3px;
-  }
-
-  .prose a:hover {
-    text-decoration-color: var(--accent);
+  .next-post,
+  .next-post:hover {
+    text-decoration: none;
   }
 </style>

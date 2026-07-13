@@ -39,7 +39,7 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
 <style>
   .kicker {
     margin: 0 0 0.5rem;
-    color: var(--accent-2);
+    color: var(--muted);
     font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -79,7 +79,10 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
   }
 
   .post-link:hover .post-title {
-    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-decoration-color: var(--muted);
+    text-underline-offset: 4px;
   }
 
   .post-list time {

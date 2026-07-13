@@ -13,6 +13,7 @@ export async function getStaticPaths() {
 
 const { post, nextPost } = Astro.props;
 const { Content } = await render(post);
+const next = nextPost ? { href: `/blog/${nextPost.id}/`, title: nextPost.data.title } : null;
 ---
 
 <PostLayout
@@ -20,7 +21,10 @@ const { Content } = await render(post);
   description={post.data.description}
   date={post.data.date}
   updated={post.data.updated}
-  nextPost={nextPost}
+  next={next}
+  nextLabel="Next post"
+  backHref="/blog"
+  backLabel="← Back to all posts"
 >
   <Content />
 </PostLayout>
