@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { books } from '../data/books';
+---
+
+<BaseLayout title="Books" description="Books I like to read.">
+  <section class="section">
+    <p class="kicker">Currently reading &amp; loved</p>
+    <h1>Books</h1>
+    <ul class="book-list">
+      {
+        books.map((book, i) => (
+          <li class="book-item">
+            <span class="book-index">{String(i + 1).padStart(2, '0')}</span>
+            <div class="book-copy">
+              <span class="book-title">{book.title}</span>
+              <span class="book-author">{book.author}</span>
+              {book.note && <p class="book-note">{book.note}</p>}
+            </div>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .kicker {
+    margin: 0 0 0.5rem;
+    color: var(--accent-2);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    margin: 0 0 2rem;
+    font-size: 2.25rem;
+    font-style: italic;
+  }
+
+  .book-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .book-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .book-index {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--accent);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+  }
+
+  .book-copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book-title {
+    font-weight: 600;
+  }
+
+  .book-author {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+  }
+
+  .book-note {
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0.4rem 0 0;
+  }
+</style>

@@ -1,15 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { books } from '../data/books';
-
-const allPosts = await getCollection('blog', ({ data }) => !data.draft);
-const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const latestPost = posts[0];
 ---
 
 <BaseLayout title="Salman">
-  <section id="about" class="section hero">
+  <section id="me" class="section hero">
     <p class="kicker">Hello, I'm</p>
     <h1>Salman.</h1>
     <p class="tagline">
@@ -21,49 +15,6 @@ const latestPost = posts[0];
       <span class="dot">&bull;</span>
       <a href="mailto:salman01sp@gmail.com">Email</a>
     </p>
-  </section>
-
-  <section id="books" class="section">
-    <p class="kicker">01 &mdash; Currently reading &amp; loved</p>
-    <h2>Books</h2>
-    <ul class="book-list">
-      {
-        books.map((book, i) => (
-          <li class="book-item">
-            <span class="book-index">{String(i + 1).padStart(2, '0')}</span>
-            <div class="book-copy">
-              <span class="book-title">{book.title}</span>
-              <span class="book-author">{book.author}</span>
-              {book.note && <p class="book-note">{book.note}</p>}
-            </div>
-          </li>
-        ))
-      }
-    </ul>
-  </section>
-
-  <section id="blog" class="section">
-    <p class="kicker">02 &mdash; Latest from the blog</p>
-    <h2>Blog</h2>
-    {
-      !latestPost ? (
-        <p class="muted">No posts yet — check back soon.</p>
-      ) : (
-        <a href={`/blog/${latestPost.id}/`} class="latest-post">
-          <span class="post-title">{latestPost.data.title}</span>
-          <time datetime={latestPost.data.date.toISOString()}>
-            {latestPost.data.date.toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
-          </time>
-          <p class="post-desc">{latestPost.data.description}</p>
-          <span class="read-more">Read the post &rarr;</span>
-        </a>
-      )
-    }
-    <p><a href="/blog">All posts &rarr;</a></p>
   </section>
 </BaseLayout>
 
@@ -101,107 +52,5 @@ const latestPost = posts[0];
   .dot {
     color: var(--border);
     margin: 0 0.35rem;
-  }
-
-  #books h2,
-  #blog h2 {
-    margin: 0 0 1.5rem;
-    font-size: 1.65rem;
-  }
-
-  .book-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .book-item {
-    display: flex;
-    gap: 1rem;
-    padding: 1.1rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .book-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
-  }
-
-  .book-index {
-    font-family: var(--font-display);
-    font-style: italic;
-    color: var(--accent);
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    padding-top: 0.1rem;
-  }
-
-  .book-copy {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .book-title {
-    font-weight: 600;
-  }
-
-  .book-author {
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-top: 0.15rem;
-  }
-
-  .book-note {
-    color: var(--muted);
-    font-size: 0.9rem;
-    font-style: italic;
-    margin: 0.4rem 0 0;
-  }
-
-  .latest-post {
-    display: block;
-    color: var(--fg);
-    margin-bottom: 1.5rem;
-    padding: 1.5rem;
-    background: var(--bg-raised);
-    border-radius: 12px;
-    border: 1px solid var(--border);
-  }
-
-  .latest-post:hover {
-    text-decoration: none;
-    border-color: var(--accent);
-  }
-
-  .post-title {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.3rem;
-  }
-
-  .latest-post time {
-    display: block;
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-top: 0.3rem;
-  }
-
-  .post-desc {
-    margin: 0.75rem 0 0;
-    color: var(--muted);
-  }
-
-  .read-more {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--accent);
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  .muted {
-    color: var(--muted);
   }
 </style>
