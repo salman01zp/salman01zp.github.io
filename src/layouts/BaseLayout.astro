@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import SettingsWidget from '../components/SettingsWidget.astro';
 
 interface Props {
   title: string;
@@ -19,6 +20,24 @@ const pageTitle = title === 'Salman' ? title : `${title} · Salman`;
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var theme = localStorage.getItem('theme') || 'system';
+        if (theme !== 'system') {
+          root.setAttribute('data-theme', theme);
+        }
+        if (localStorage.getItem('read-mode') === 'true') {
+          root.setAttribute('data-read-mode', 'true');
+        }
+      })();
+    </script>
   </head>
   <body>
     <div class="page">
@@ -39,5 +58,6 @@ const pageTitle = title === 'Salman' ? title : `${title} · Salman`;
         <p>&copy; {new Date().getFullYear()} Salman</p>
       </footer>
     </div>
+    <SettingsWidget />
   </body>
 </html>
