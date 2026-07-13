@@ -1,69 +1,52 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Quote from '../components/Quote.astro';
 ---
 
 <BaseLayout title="Salman">
-  <section id="me" class="section hero">
-    <p class="kicker">Hello, I'm</p>
-    <h1>Salman.</h1>
-    <p class="tagline">
+  <section class="section me">
+    <h1>About Salman</h1>
+
+    <p class="intro">
       Software engineer by trade, reader by habit. I build things, take notes
       on what I learn, and occasionally write them up here.
     </p>
-    <p class="links">
-      <a href="https://github.com/salman01zp" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <span class="dot">&bull;</span>
-      <a href="mailto:salman01sp@gmail.com">Email</a>
-    </p>
-  </section>
 
-  <section class="section about">
-    <h2>About Salman</h2>
-    <p>
-      I write software for a living, and spend most of my time outside work
-      reading, tinkering with small projects, and thinking about how to build
-      things that last. This site is a place to keep notes on both.
-    </p>
-
-    <h3>Personal</h3>
+    <h2>Personal</h2>
     <p>
       Outside of work I read widely &mdash; mostly nonfiction, systems
       thinking, and the occasional novel. I like slow mornings, long walks,
       and conversations that wander. I'm generally more interested in asking
       good questions than having quick answers.
     </p>
+
+    <Quote source="Old carpentry proverb">Measure twice, cut once.</Quote>
+    <Quote source="Attributed to Aristotle">Well begun is half done.</Quote>
+
+    <h2>Work</h2>
+    <p class="work-info">
+      Software engineer, currently building backend systems and developer
+      tooling. Previously worked across full-stack product teams.
+    </p>
   </section>
 </BaseLayout>
 
 <style>
-  .hero {
-    padding-top: 4.5rem;
-    padding-bottom: 3.5rem;
+  .me {
+    padding-top: 3.5rem;
   }
 
-  .kicker {
-    margin: 0 0 0.5rem;
+  .intro,
+  p {
+    text-align: left;
     color: var(--muted);
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .hero h1 {
-    font-size: clamp(2.75rem, 8vw, 4rem);
-    margin: 0 0 1.25rem;
-    font-style: italic;
-  }
-
-  .tagline {
-    color: var(--muted);
-    font-size: 1.1rem;
     max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .links {
-    margin-top: 1.5rem;
+    margin-top: 1.25rem;
   }
 
   .dot {
@@ -71,20 +54,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin: 0 0.35rem;
   }
 
-  .about h2 {
-    font-size: 1.65rem;
-    font-style: italic;
-    margin: 0 0 1rem;
-  }
-
-  .about h3 {
-    font-size: 1.1rem;
-    font-style: italic;
-    margin: 2rem 0 0.75rem;
-  }
-
-  .about p {
-    color: var(--muted);
+  .me :global(.quote-block) {
     max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
+
+  .work-info {
+    font-size: 0.9rem;
   }
 </style>

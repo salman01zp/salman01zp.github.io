@@ -8,8 +8,7 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
 
 <BaseLayout title="Blog" description="All blog posts.">
   <section class="section">
-    <p class="kicker">Writing</p>
-    <h1>Blog</h1>
+    <h1>Blog Posts</h1>
     {
       posts.length === 0 ? (
         <p class="muted">No posts yet — check back soon.</p>
@@ -18,15 +17,10 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
           {posts.map((post) => (
             <li>
               <a href={`/blog/${post.id}/`} class="post-link">
-                <time datetime={post.data.date.toISOString()}>
-                  {post.data.date.toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </time>
-                <span class="post-title">{post.data.title}</span>
-                <p class="post-desc">{post.data.description}</p>
+                <span class="post-title">{post.data.title}</span>{' '}
+                <span class="post-date">
+                  ({post.data.date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })})
+                </span>
               </a>
             </li>
           ))}
@@ -37,77 +31,37 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
 </BaseLayout>
 
 <style>
-  .kicker {
-    margin: 0 0 0.5rem;
-    color: var(--muted);
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  h1 {
-    margin: 0 0 2rem;
-    font-size: 2.25rem;
-    font-style: italic;
-  }
-
   .post-list {
-    list-style: none;
+    list-style: disc;
     margin: 0;
-    padding: 0;
+    padding-left: 1.4rem;
     display: flex;
     flex-direction: column;
-  }
-
-  .post-list li {
-    border-bottom: 1px solid var(--border);
-  }
-
-  .post-list li:last-child {
-    border-bottom: none;
+    gap: 0.6rem;
+    text-align: left;
+    max-width: 34rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .post-link {
-    display: block;
     color: var(--fg);
-    padding: 1.5rem 0;
-  }
-
-  .post-link:hover {
-    text-decoration: none;
-  }
-
-  .post-link:hover .post-title {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-decoration-color: var(--muted);
-    text-underline-offset: 4px;
-  }
-
-  .post-list time {
-    display: block;
-    color: var(--muted);
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    margin-bottom: 0.4rem;
   }
 
   .post-title {
-    display: block;
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.35rem;
-    transition: color 0.15s ease;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
-  .post-desc {
-    margin: 0.5rem 0 0;
+  .post-date {
     color: var(--muted);
+    font-weight: 400;
+    text-transform: none;
   }
 
   .muted {
     color: var(--muted);
+    text-align: center;
   }
 </style>

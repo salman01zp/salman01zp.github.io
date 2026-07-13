@@ -31,7 +31,16 @@ const { source } = Astro.props;
     color: var(--fg);
   }
 
+  .quote-block blockquote::before {
+    content: '\201C';
+  }
+
+  .quote-block blockquote::after {
+    content: '\201D';
+  }
+
   .quote-block blockquote :global(p) {
+    display: inline;
     margin: 0;
   }
 
